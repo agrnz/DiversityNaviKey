@@ -1,4 +1,4 @@
-# DiversityNavikey
+# DiversityNaviKey
 
 DiversityNaviKey (DNK) is a progressive web application (PWA) primarily designed for diagnosis and interactive identification of organisms or other items as well as item groups which are part of or related to biodiversity, geodiversity or environmental research, by means of a set of pre-defined characteristics. 
 For current information see [DiversityNaviKey Wiki](https://diversityworkbench.net/Portal/DiversityNaviKey).
