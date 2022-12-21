@@ -1,0 +1,31 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "@/data/itemIds.schema.json",
+    "title": "Items",
+    "description": "A list of all item identifiers and item names",
+    "type": "array",
+    "items": { "$ref": "#/definitions/itemIDName" },
+    "definitions": {
+        "ItemIDName": {
+            "type":"object",
+            "required": [ "IID", "ItemName", "images"],
+            "properties": {
+                "IID": {
+                    "db": "NaviKey_Item.IID",
+                    "type": "integer",
+                    "description": "The identifier of the item"
+                },
+                "ItemName": {
+                    "db": "NaviKey_Item.ItemName",
+                    "type": "string",
+                    "description": "The name of the item"
+                },
+                "images": {
+                    "db": "NaviKey_Item.images",
+                    "type": "array",
+                    "description": "Array (Json object) containing all image urls"
+                }
+            }
+        }
+    }
+}

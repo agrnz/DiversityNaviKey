@@ -1,0 +1,72 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "@/data/counter#_item_descriptor_list.schema.json",
+    "title": "Item descriptor list",
+    "description": "A list of all descriptors and data to an item",
+    "type": "array",
+    "items": { "$ref": "#/definitions/itemDescriptorList" },
+    "definitions": {
+        "itemDescriptorList": {
+            "type":"object",
+            "required": [ "IID", "Descriptors"],
+            "properties": {
+                "IID": {
+                    "db": "CacheDescription.IID",
+                    "type": "integer",
+                    "description": "The identifier of the item"
+                },
+                "Descriptors": {
+                    "type": "array",
+                    "description": "Array of objects of descriptor-state-value triples",
+                    "items": { "$ref": "#/definitions/descStateValues" }
+                }
+            }
+        },
+        "descStateValues": {
+            "type":"object",
+            "required": ["CID", "CS"],
+            "properties": {
+                "CID": {
+                    "db": "CacheDescription.CID",
+                    "type": "integer",
+                    "description": "Descriptor identifier"
+                },
+                "CS": {
+                    "db": "CacheDescription.CS",
+                    "type": "string",
+                    "description": "State value"
+                },
+                "Frequency": {
+                    "db": "CacheDescription.Frequency",
+                    "type": "string",
+                    "description": "Frequency value"
+                },
+                "Modifier": {
+                    "db": "CacheDescription.Modifier",
+                    "type": "string",
+                    "description": "Modifier value"
+                },
+                "NumberValue": {
+                    "db": "CacheDescription.X",
+                    "type": "number",
+                    "description": "Number value for numerical descriptors"
+                },
+                "TxtValue": {
+                    "db": "CacheDescription.TXT",
+                    "type": "string",
+                    "description": "Text value for text descriptors"
+                },
+                "Notes": {
+                    "db": "CacheDescription.Notes",
+                    "type": "string",
+                    "description": "Note value"
+                },
+                "Status": {
+                    "db": "CacheDescription.Status",
+                    "type": "string",
+                    "description": "Status value"
+                }
+            }
+        }
+    }
+}

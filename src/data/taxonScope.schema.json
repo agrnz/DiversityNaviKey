@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "@/data/taxonScope.schema.json",
+  "title": "Taxon scopes",
+  "description": "All taxon info of for item names",
+  "type": "array",
+  "items": { "$ref": "#/definitions/taxonScope" },
+  "definitions": {
+      "TaxonScope": {
+          "type":"object",
+          "required": [ "IID", "TaxonName", "AcceptedName", "TaxonNameSinAuthor", "AcceptedNameSinAuthor"],
+          "properties": {
+              "IID": {
+                  "db": "NaviKey_TaxonScope.IID",
+                  "type": "integer",
+                  "description": "The identifier of the item"
+              },
+              "TaxonName": {
+                  "db": "NaviKey_TaxonScope.TaxonName",
+                  "type": "string",
+                  "description": "The name of the item"
+              },
+              "AcceptedName": {
+                  "db": "NaviKey_TaxonScope.AcceptedName",
+                  "type": "string",
+                  "description": "The accepted name of the item"
+              },
+              "TaxonNameSinAuthor": {
+                "db": "NaviKey_TaxonScope.TaxonNameSinAuthor",
+                "type": "string",
+                "description": "The name of the item without author information"
+              },
+              "AcceptedNameSinAuthor": {
+              "db": "NaviKey_TaxonScope.AcceptedNameSinAuthor",
+              "type": "string",
+              "description": "The accepted name of the item without author information"
+              }
+          }
+      }
+  }
+}

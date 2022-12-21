@@ -1,0 +1,51 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "@/data/descriptors_list.schema.json",
+    "title": "Descriptors list",
+    "description": "A list of all available DD descriptors",
+    "type": "array",
+    "items": { "$ref": "#/definitions/descriptor" },
+    "definitions": {
+        "descriptor": {
+            "type":"object",
+            "required": [ "CID", "CharName", "Subclass", "Availability", "Unit", "UnitIsPrefix", "Order"],
+            "properties": {
+                "CID": {
+                    "db": "NaviKey_Character.CID",
+                    "type": "integer",
+                    "description": "The identifier of the descriptor"
+                },
+                "CharName": {
+                    "db": "NaviKey_Character.CharName",
+                    "type": "string",
+                    "description": "The name of the descriptor"
+                },
+                "Subclass": {
+                    "db": "NaviKey_Character.Subclass",
+                    "type": "string",
+                    "description": "The type of the descriptor"
+                },
+                "Availability": {
+                    "db": "NaviKey_Character.Availability",
+                    "type": "integer",
+                    "description": "Relevance of descriptor (used for sorting)"
+                },
+                "Unit": {
+                    "db": "NaviKey_Character.Unit",
+                    "type": "string",
+                    "description": "Unit for numeric values"
+                },
+                "UnitIsPrefix": {
+                    "db": "NaviKey_Character.UnitIsPrefix",
+                    "type": "boolean",
+                    "description": "Whether unit is before or after numeric value"
+                },
+                "Order": {
+                    "db": "NaviKey_Character.Order",
+                    "type": "integer",
+                    "description": "Default db order for descriptors"
+                }
+            }
+        }
+    }
+}

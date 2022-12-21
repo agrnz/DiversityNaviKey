@@ -1,0 +1,89 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "@/data/numerical_descriptor_state_itemIds.schema.json",
+    "title": "Numerical descriptor-state items",
+    "description": "A list of all items corresponding to their numerical/quantitative descriptor-state pairs",
+    "type": "array",
+    "items": { "$ref": "#/definitions/numDescriptorStateItemList" },
+    "definitions": {
+        "numDescriptorStateItemList": {
+            "type":"object",
+            "required": [ "CID", "CS", "ItemList"],
+            "properties": {
+                "CID": {
+                    "db": "CacheDescription.CID",
+                    "type": "integer",
+                    "description": "The identifier of the descriptor"
+                },
+                "CS": {
+                    "db": "CacheDescription.CS",
+                    "type": "string",
+                    "description": "The state, must be one of 'UMethLower, UMethUpper, Min, Max, Mean'",
+                    "oneOf": [{
+                        "properties": {
+                            "Min": {
+                              "type": "string"
+                            }
+                        },
+                        "required": ["Min"]
+                        },
+                        {
+                        "properties": {
+                            "UMethLower": {
+                              "type": "string"
+                            }
+                        },
+                        "required": ["UMethLower"]
+                        },
+                        {
+                        "properties": {
+                            "Mean": {
+                              "type": "string"
+                            }
+                        },
+                        "required": ["Mean"]
+                        },
+                        {
+                        "properties": {
+                            "UMethUpper": {
+                              "type": "string"
+                            }
+                        },
+                        "required": ["UMethUpper"]
+                        },
+                        {
+                        "properties": {
+                            "Max": {
+                              "type": "string"
+                            }
+                        },
+                        "required": ["Max"]
+                        }
+                    ]
+                },
+                "ItemList": {
+                    "type": "array",
+                    "description": "Array of objects of item identifiers and number value X",
+                    "items": { "$ref": "#/definitions/itemIdNumValue" }
+                }
+            }
+        },
+        "itemIdNumValue": {
+            "type":"object",
+            "description": "Item identifier - number value pair",
+            "required": ["IID", "NumberValue"],
+            "properties": {
+                "IID": {
+                    "db": "CacheDescription.IID",
+                    "type": "integer",
+                    "description": "Item identifier"
+                },
+                "NumberValue": {
+                    "db": "CacheDescription.X",
+                    "type": "number",
+                    "description": "Number value"
+                }
+            }
+        }
+    }
+}

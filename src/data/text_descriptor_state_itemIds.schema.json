@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "@/data/text_descriptor_state_itemIds.schema.json",
+  "title": "Text descriptor-state items",
+  "description": "A list of all items corresponding to their text descriptor-state pairs",
+  "type": "array",
+  "items": { "$ref": "#/definitions/txtDescriptorStateItemList" },
+  "definitions": {
+      "txtDescriptorStateItemList": {
+          "type":"object",
+          "required": [ "CID", "CS", "ItemList"],
+          "properties": {
+              "CID": {
+                  "db": "CacheDescription.CID",
+                  "type": "integer",
+                  "description": "The identifier of the descriptor"
+              },
+              "CS": {
+                  "db": "CacheDescription.CS",
+                  "type": "string",
+                  "description": "The state"
+              },
+              "ItemList": {
+                  "type": "array",
+                  "description": "Array of objects of item identifiers and text value TXT",
+                  "items": { "$ref": "#/definitions/itemIdTxtValue" }
+              }
+          }
+      },
+      "itemIdTxtValue": {
+          "type":"object",
+          "description": "Item identifier - text value pair",
+          "required": ["IID", "TextValue"],
+          "properties": {
+              "IID": {
+                  "db": "CacheDescription.IID",
+                  "type": "integer",
+                  "description": "Item identifier"
+              },
+              "TextValue": {
+                  "db": "CacheDescription.TXT",
+                  "type": "string",
+                  "description": "Text"
+              }
+          }
+      }
+  }
+}

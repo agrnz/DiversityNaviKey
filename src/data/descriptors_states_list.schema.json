@@ -1,0 +1,41 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "@/data/descriptors_states_list.schema.json",
+    "title": "List of all descriptor-states",
+    "description": "A list of all states corresponding to their descriptors",
+    "type": "array",
+    "items": { "$ref": "#/definitions/descriptorStates" },
+    "definitions": {
+        "descriptorStates": {
+            "type":"object",
+            "required": [ "CID", "CS", "StateName", "StateID", "Order"],
+            "properties": {
+                "CID": {
+                    "db": "NaviKey_State.CID",
+                    "type": "integer",
+                    "description": "The identifier of the corresponding descriptor"
+                },
+                "CS": {
+                    "db": "NaviKey_State.CS",
+                    "type":"string",
+                    "description": "The state"
+                },
+                "StateName": {
+                    "db": "NaviKey_State.StateName",
+                    "type": "string",
+                    "description": "The name of the state"
+                },
+                "StateID": {
+                    "db": "NaviKey_State.StateID",
+                    "type": "integer",
+                    "description": "The identifier of the state"
+                },
+                "Order": {
+                    "db": "NaviKey_State.Order",
+                    "type": "integer",
+                    "description": "Default db order for states"
+                }
+            }
+        }
+    }
+}

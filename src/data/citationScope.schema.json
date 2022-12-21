@@ -1,0 +1,71 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "@/data/citationScope.schema.json",
+  "title": "Citation scopes",
+  "description": "All citation and reference info for an item",
+  "type": "array",
+  "items": { "$ref": "#/definitions/CitationScope" },
+  "definitions": {
+      "CitationScope": {
+          "type":"object",
+          "required": [ "IID", "Description", "Title", "Authors", "Publisher", "Year", "SeriesTitle", "Periodical", "Volume", "Issue", "Pages"],
+          "properties": {
+              "IID": {
+                  "db": "NaviKey_CitationScope.IID",
+                  "type": "integer",
+                  "description": "The identifier of the item"
+              },
+              "Description": {
+                  "db": "NaviKey_CitationScope.Description",
+                  "type": "string",
+                  "description": "The description of the citation"
+              },
+              "Title": {
+                  "db": "NaviKey_CitationScope.Title",
+                  "type": "string",
+                  "description": "The title of the citation"
+              },
+              "Authors": {
+                "db": "NaviKey_CitationScope.AuthorsOrEditors",
+                "type": "string",
+                "description": "The authors or editors of the citation/reference"
+              },
+              "Publisher": {
+                "db": "NaviKey_CitationScope.Publisher",
+                "type": "string",
+                "description": "The publisher of the citation/reference"
+              },
+              "Year": {
+                "db": "NaviKey_CitationScope.DateYear",
+                "type": "integer",
+                "description": "The date/year of the citation/reference"
+                },
+                "SeriesTitle": {
+                  "db": "NaviKey_CitationScope.SeriesTitle",
+                  "type": "string",
+                  "description": "The title of the series of the reference"
+                },
+                "Periodical": {
+                  "db": "NaviKey_CitationScope.Periodical",
+                  "type": "string",
+                  "description": "The periodic info of the reference"
+                },
+                "Volume": {
+                  "db": "NaviKey_CitationScope.Volume",
+                  "type": "string",
+                  "description": "The volume info of the reference"
+                },
+                "Issue": {
+                  "db": "NaviKey_CitationScope.Issue",
+                  "type": "string",
+                  "description": "The issue inforamtion of the reference"
+                },
+                "Pages": {
+                  "db": "NaviKey_CitationScope.Pages",
+                  "type": "string",
+                  "description": "The pages of the reference"
+                }
+          }
+      }
+  }
+}

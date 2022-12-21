@@ -1,0 +1,4 @@
+[{ "key": "cacheFirst", "loadingText": "settings.cacheFirst", "shortText": "settings.shortCacheFirst" }, 
+  { "key": "onlineFirst", "loadingText": "settings.onlineFirst", "shortText": "settings.shortOnlineFirst" }, 
+  { "key": "offline", "loadingText": "settings.offline", "shortText": "settings.shortOffline" },
+  { "key": "onlineNoCache", "loadingText": "settings.onlineNoCache", "shortText": "settings.shortOnlineNoCache" }]
