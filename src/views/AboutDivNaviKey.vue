@@ -15,11 +15,11 @@
     </v-card-text>
     <v-card-text class="pt-4 pb-2 mb-0 mt-0">
         {{ $t('about.appInfoURLTitle') }}:
-        <v-btn small :color="colortheme.colortext" class="ml-2" text :href="furtherInfoURL" target="_blank">{{ $t('about.appInfoURLText') }}</v-btn>
+        <v-btn small :color="colortheme.colortext" class="ml-2" variant="text" :href="furtherInfoURL" target="_blank">{{ $t('about.appInfoURLText') }}</v-btn>
     </v-card-text>
     <v-card-text class="pt-4 pb-2 mb-0 mt-0">
         {{ $t('about.appDataSourceInfoURLTitle') }}:
-        <v-btn small :color="colortheme.colortext" class="ml-2" text :href="dataSourceInfoURL" target="_blank">{{ $t('about.appDataSourceInfoURLText') }}</v-btn>
+        <v-btn small :color="colortheme.colortext" class="ml-2" variant="text" :href="dataSourceInfoURL" target="_blank">{{ $t('about.appDataSourceInfoURLText') }}</v-btn>
     </v-card-text>
        </v-expansion-panel-content>
       </v-expansion-panel>
@@ -28,7 +28,7 @@
 </template>
 <script>
 export default {
-  name: 'About',
+  name: 'AboutDivNaviKey',
   components: {
   },
   data: () => ({

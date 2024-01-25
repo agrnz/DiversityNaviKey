@@ -2,17 +2,17 @@
   <v-card :color="colortheme.color">
     <v-card-title class="subtitle-2 pb-0 pl-2 ml-2">{{ $t('datasourceSelectComponent.loadingTitle') }}
       <v-spacer></v-spacer>
-      <v-btn v-if="testEnvironment && !loggedIn" :color="colortheme.colortext" text @click="onLoginButtonClick">
+      <v-btn v-if="testEnvironment && !loggedIn" :color="colortheme.colortext" variant="text" @click="onLoginButtonClick">
         <v-icon left>mdi-login</v-icon>{{ $t('login.submitBtn') }}
         </v-btn>
-        <v-btn v-else-if="testEnvironment" :color="colortheme.colortext" text @click="onUserButtonClick">
+        <v-btn v-else-if="testEnvironment" :color="colortheme.colortext" variant="text" @click="onUserButtonClick">
         <v-icon left>mdi-account</v-icon>
         </v-btn>
         </v-card-title>
     <v-card-text class="pt-4 pl-2 ml-2" v-if="!defaultDatasourceId">
       {{ $t('datasourceSelectComponent.infoText') }}
       <v-select :items="datasources" v-model="datasourceId" :item-value="item => item.id" @change="onChangeSource"
-      :item-text="item => item.displayName" :label="$t('naviToolbar.selecteDatasourcePlaceHolder')"
+      :item-title="item => item.displayName" :label="$t('naviToolbar.selecteDatasourcePlaceHolder')"
       :aria-labelledby="$t('naviToolbar.selecteDatasourcePlaceHolder')"
       :color="colortheme.colortext" :item-color="colortheme.colortext" flat hide-selected>
     </v-select>
@@ -24,7 +24,7 @@
     <v-card-text v-if="schemeSelect==='self'">{{ $t('datasourceSelectComponent.datasourceLanguageInfo') }}
     </v-card-text>
     <v-select v-if="schemeSelect==='self'" class="pt-0 pl-4 ml-2" :items="availableSchemes" v-model="schemeId" :item-value="item => item"
-      :item-text="item => item.scheme_lang" :label="$t('datasourceSelectComponent.selectScheme')"
+      :item-title="item => item.scheme_lang" :label="$t('datasourceSelectComponent.selectScheme')"
       :aria-labelledby="$t('datasourceSelectComponent.selectScheme')"
       :color="colortheme.colortext" :item-color="colortheme.colortext" flat hide-selected>
     </v-select>
@@ -56,8 +56,8 @@
   </v-card>
 </template>
 <script>
-import LoginDialogForm from '../views/Login.vue'
-import LogoutDialogForm from '../views/Logout.vue'
+import LoginDialogForm from '../views/LoginDivNaviKey.vue'
+import LogoutDialogForm from '../views/LogoutDivNaviKey.vue'
 import { mapGetters } from 'vuex'
 import groupingAndSorting from '../mixins/groupingAndSortingMethods'
 

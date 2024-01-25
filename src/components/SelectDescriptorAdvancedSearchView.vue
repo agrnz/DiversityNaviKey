@@ -34,7 +34,7 @@
         <v-card-title class="subtitle-2">{{ $t('selectDescriptorAdvancedSearchView.errorTitle') }}</v-card-title>
         <v-card-subtitle>
         {{errorMessage}}
-        <v-btn outlined small class="ml-4" @click="onErrorButtonOkClicked()">{{ $t('selectDescriptorAdvancedSearchView.errorButtonOK') }}</v-btn>
+        <v-btn variant="outlined" small class="ml-4" @click="onErrorButtonOkClicked()">{{ $t('selectDescriptorAdvancedSearchView.errorButtonOK') }}</v-btn>
         </v-card-subtitle>
       </v-card>
       <v-card-actions>
@@ -57,7 +57,7 @@
                   <v-col cols="12" md="8">
                     <v-autocomplete v-if="isMobile" :menu-props="{ maxHeight:400 }" class="pt-0" :color="colortheme.colortext" clearable open-on-clear loader-height="30"
                       prepend-icon="mdi-database-search" v-model="selectedObjects" :type="switchtype"
-                      :items="descriptorItems" :item-text="item => item.name" item-value="id" :item-color="colortheme.colortext" hint="Search" flat return-object
+                      :items="descriptorItems" :item-title="item => item.name" item-value="id" :item-color="colortheme.colortext" hint="Search" flat return-object
                       @change="onSelectionChange($event)" :placeholder="$t('selectDescriptorSearchView.cardTitle')" :aria-labelledby="$t('selectDescriptorSearchView.selecteDescriptorPlaceHolder')">
                       <!-- <template v-slot:item="{ item }">
                           <v-list-item-content>
@@ -65,38 +65,38 @@
                             </v-list-item-title>
                           </v-list-item-content>
                     </template> -->
-                    <template v-slot:item="data">
+                    <template v-slot:item="{ props, item }">
                       <v-row justify="center">
                       <v-col cols="12">
                         <v-list >
                         <v-divider></v-divider>
-                        <v-list-item class="pl-0" >
-                          <v-list-item-icon class="pt-2" v-if="descriptorImagesAvailable && data.item.ImageToShow">
+                        <v-list-item v-bind="props" class="pl-0" >
+                          <v-list-item icon class="pt-2" v-if="descriptorImagesAvailable && item.raw.ImageToShow">
                           <v-tooltip top content-class="custom-tooltip" >
-                          <template v-slot:activator="{ on}">
+                          <template v-slot:activator>
                            <!-- <v-list-item-icon v-on="on" size="60" tile left> -->
                              <!-- <v-list-item-content> -->
-                                  <v-img max-height="100" contain max-width="100" v-on="on" :src="data.item.ImageToShow" class="ml-2 mr-n4"/>
+                                  <v-img max-height="100" contain max-width="100" :src="item.raw.ImageToShow" class="ml-2 mr-n4"/>
                              <!-- </v-list-item-content> -->
                                 <!-- </v-list-item-icon> -->
                           </template>
-                          <span> <img class="custom-img" :src="data.item.ImageToShow"/> </span>
+                          <span> <img class="custom-img" :src="item.raw.ImageToShow"/> </span>
                         </v-tooltip>
-                      </v-list-item-icon>
-                      <v-list-item-content>
+                      </v-list-item>
+                      <!-- <v-list-item-content> -->
                       <v-list-item-title class="wrap-text">
                         {{ data.item.name }}
                       </v-list-item-title>
-                    </v-list-item-content>
+                    <!-- </v-list-item-content> -->
                     </v-list-item>
                   </v-list>
                   </v-col>
                   </v-row>
                     </template>
-                    <template v-slot:append-outer>
+                    <template v-slot:append>
                         <v-tooltip top>
-                          <template v-slot:activator="{ on }">
-                            <v-icon v-on="on" :color="colortheme.colortext" @click="onActivateSearchClick()" v-text="switchtype==='button' ? 'mdi-keyboard-off-outline' : 'mdi-keyboard-outline'"></v-icon>
+                          <template v-slot:activator>
+                            <v-icon :color="colortheme.colortext" @click="onActivateSearchClick()" v-text="switchtype==='button' ? 'mdi-keyboard-off-outline' : 'mdi-keyboard-outline'"></v-icon>
                           </template>
                           <span>{{ $t('selectDescriptorAdvancedSearchView.activateKeyboard') }}</span>
                         </v-tooltip>
@@ -104,7 +104,7 @@
                     </v-autocomplete>
                     <v-autocomplete v-if="!isMobile" class="pt-0" :color="colortheme.colortext" clearable open-on-clear loader-height="30" :menu-props="{ maxHeight:600 }"
                       prepend-icon="mdi-database-search" v-model="selectedObjects" :type="switchtype"
-                      :items="descriptorItems" :item-text="item => item.name" item-value="id" :item-color="colortheme.colortext" hint="Search" flat return-object
+                      :items="descriptorItems" :item-title="item => item.name" item-value="id" :item-color="colortheme.colortext" hint="Search" flat return-object
                       @change="onSelectionChange($event)" :placeholder="$t('selectDescriptorSearchView.cardTitle')" :aria-labelledby="$t('selectDescriptorSearchView.selecteDescriptorPlaceHolder')">
                       <!-- <template v-slot:item="{ item }">
                           <v-list-item-content>
@@ -112,38 +112,38 @@
                             </v-list-item-title>
                           </v-list-item-content>
                     </template> -->
-                    <template v-slot:item="data">
+                    <template v-slot:item="{ props, data }">
                       <v-row justify="center">
                       <v-col cols="12">
                         <v-list >
                         <v-divider></v-divider>
-                    <v-list-item>
-                          <v-list-item-icon class="pt-4" v-if="data.item.ImageToShow">
+                    <v-list-item v-bind="props">
+                          <v-list-item icon class="pt-4" v-if="data.raw.ImageToShow">
                           <v-tooltip top content-class="custom-tooltip" >
-                          <template v-slot:activator="{ on}">
+                          <template v-slot:activator>
                            <!-- <v-list-item-icon v-on="on" size="60" tile left> -->
                              <!-- <v-list-item-content> -->
-                                  <v-img max-height="200" contain max-width="200" v-on="on" :src="data.item.ImageToShow"/>
+                                  <v-img max-height="200" contain max-width="200" :src="data.raw.ImageToShow"/>
                              <!-- </v-list-item-content> -->
                                 <!-- </v-list-item-icon> -->
                           </template>
-                          <span> <img class="custom-img ml-4" :src="data.item.ImageToShow"/> </span>
+                          <span> <img class="custom-img ml-4" :src="data.raw.ImageToShow"/> </span>
                         </v-tooltip>
-                      </v-list-item-icon>
-                      <v-list-item-content>
+                      </v-list-item>
+                      <!-- <v-list-item-content> -->
                       <v-list-item-title class="wrap-text">
                         {{ data.item.name }}
                       </v-list-item-title>
-                    </v-list-item-content>
+                    <!-- </v-list-item-content> -->
                     </v-list-item>
                   </v-list>
                   </v-col>
                   </v-row>
                     </template>
-                    <template v-slot:append-outer>
+                    <template v-slot:append>
                         <v-tooltip top>
-                          <template v-slot:activator="{ on }">
-                            <v-icon v-on="on" :color="colortheme.colortext" @click="onActivateSearchClick()" v-text="switchtype==='button' ? 'mdi-keyboard-off-outline' : 'mdi-keyboard-outline'"></v-icon>
+                          <template v-slot:activator>
+                            <v-icon :color="colortheme.colortext" @click="onActivateSearchClick()" v-text="switchtype==='button' ? 'mdi-keyboard-off-outline' : 'mdi-keyboard-outline'"></v-icon>
                           </template>
                           <span>{{ $t('selectDescriptorAdvancedSearchView.activateKeyboard') }}</span>
                         </v-tooltip>
@@ -170,15 +170,15 @@
             <v-card-text>
             <v-row no-gutters>
               <v-col cols="12" md="8">
-                <template v-for="(groupItem, idx) in listOfGroups">
-                  <v-list-item :key="idx">
-                  <v-list-item-content>
+                <template v-for="(groupItem, idx) in listOfGroups" :key="idx">
+                  <v-list-item>
+                  <!-- <v-list-item-content> -->
                     <v-checkbox v-model="enabledGroup[idx]" :value="groupItem" hide-details class="shrink mr-2 mt-0" :color="colortheme.colortext" >
                       <template v-slot:label>
                         <div v-html="groupItem.text"></div>
                       </template>
                     </v-checkbox>
-                  </v-list-item-content>
+                  <!-- </v-list-item-content> -->
                   <v-list-item-action>
                     <v-btn icon @click="onGroupItemDeleteClick(groupItem)">
                       <v-icon :color="colortheme.colortext">mdi-close-circle</v-icon>
@@ -222,7 +222,7 @@
           <v-card-title class="subtitle-2">{{ $t('selectDescriptorAdvancedSearchView.errorTitle') }}</v-card-title>
           <v-card-subtitle>
             {{errorMessage}}
-            <v-btn outlined small class="ml-4" @click="onErrorButtonOkClicked()">{{ $t('selectDescriptorAdvancedSearchView.errorButtonOK') }}</v-btn>
+            <v-btn variant="outlined" small class="ml-4" @click="onErrorButtonOkClicked()">{{ $t('selectDescriptorAdvancedSearchView.errorButtonOK') }}</v-btn>
           </v-card-subtitle>
         </v-card>
         <v-card-actions>
@@ -233,7 +233,7 @@
         </v-card-actions>
         <v-card-text class="pt-8 ml-3" :color="colortheme.colordarken">
         </v-card-text>
-        <v-btn block class="ml-0" large text v-if="!isMobile" to="/navikey-resultlist" :color="colortheme.colortext" outlined>
+        <v-btn block class="ml-0" large variant="text" v-if="!isMobile" to="/navikey-resultlist" :color="colortheme.colortext" outlined>
           <span>{{ $t('naviToolbar.matches') }} {{numberOfMatches}}</span>
         </v-btn>
     </v-card>
@@ -320,7 +320,7 @@ export default {
       return this.getSwitchType
     },
     isMobile () {
-      return this.$vuetify.breakpoint.xsOnly
+      return this.$vuetify.display.xsOnly
     },
     datasourceId () {
       if (this.searchstring && this.searchstring.db_id === this.$store.getters.getCurrentDatasourceID) {

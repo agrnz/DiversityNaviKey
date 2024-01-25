@@ -10,7 +10,7 @@ export default {
   created () {
     document.addEventListener('swUpdated', this.updateAvailable, { once: true })
     // prevent multiple refreshes
-    navigator.serviceWorker.addEventListener('controllerchange', () => {
+    navigator.serviceWorker?.addEventListener('controllerchange', () => {
       if (this.refreshing) return
       this.refreshing = true
       window.location.reload()

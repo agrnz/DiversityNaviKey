@@ -8,7 +8,7 @@
 </template>
 <script>
 export default {
-  name: 'Impressum',
+  name: 'ImpressumDivNaviKey',
   data: () => ({
     impressumURL: 'http://www.snsb.info/Impressum.html'
   }),

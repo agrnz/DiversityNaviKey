@@ -21,19 +21,19 @@
         </v-select>
         <v-autocomplete v-if="!isMobile" :color="colortheme.colortext" hide-no-data :type="switchtype" :no-data-text="$t('selectDescriptorSearchView.noStatesText')"
         :label="$t('selectDescriptorSearchView.selecteDescriptorStateLabel')" v-model="selectedItems" loader-height="50" :menu-props="{ maxHeight:600 }"
-        :items="itemStates" :item-text="item => item.csName" item-value="stateID" flat return-object multiple :item-color="colortheme.colortext">
+        :items="itemStates" :item-title="item => item.csName" item-value="stateID" flat return-object multiple :item-color="colortheme.colortext">
         <template v-slot:item="data">
           <v-row justify="center">
             <v-col cols="12">
               <v-list >
                 <v-divider inset></v-divider>
                 <v-list-item>
-                  <v-list-item-icon class="pt-2">
+                  <v-list-item icon class="pt-2">
                     <v-icon :color="colortheme.colortext" v-if="data.attrs.inputValue">mdi-checkbox-marked</v-icon><v-icon v-else>mdi-checkbox-blank-outline</v-icon>
                     <v-tooltip top content-class="custom-tooltip">
-                      <template v-slot:activator="{ on }">
+                      <template v-slot:activator>
                         <!-- <v-list-item-content> -->
-                          <v-img v-if="data.item.ImageToShow" max-height="200" contain max-width="200" v-on="on" :src="data.item.ImageToShow" class="ml-4"/>
+                          <v-img v-if="data.item.ImageToShow" max-height="200" contain max-width="200" :src="data.item.ImageToShow" class="ml-4"/>
                         <!-- </v-list-item-content> -->
                         <!-- <v-list-item-avatar v-on="on" v-if="stateImagesAvailable" v-bind="attrs" size="60" tile left>
                               <img contain :src="data.item.ImageToShow" alt="">
@@ -41,27 +41,27 @@
                       </template>
                       <span> <img class="custom-img" :src="data.item.ImageToShow"/> </span>
                     </v-tooltip>
-                  </v-list-item-icon>
-                  <v-list-item-content>
+                  </v-list-item>
+                  <!-- <v-list-item-content> -->
                     <v-list-item-title class="wrap-text">
                         {{ data.item.csName }}
-                      <v-list-item-icon v-if="stateImagesAvailable">
-                        <v-icon :color="colortheme.colortext" @click="onStateInfoClick(data)" @click.native.stop>mdi-information</v-icon>
-                      </v-list-item-icon>
+                      <v-list-item icon v-if="stateImagesAvailable">
+                        <v-icon :color="colortheme.colortext" @click="onStateInfoClick(data)" @click.stop>mdi-information</v-icon>
+                      </v-list-item>
                     </v-list-item-title>
                     <!-- <v-list-item-action v-if="stateImagesAvailable">
-                      <v-btn text :color="colortheme.colortext" @click="onStateInfoClick(data)" @click.native.stop>{{ $t('selectDescriptorSearchView.stateInfoBtn') }}</v-btn>
+                      <v-btn text :color="colortheme.colortext" @click="onStateInfoClick(data)" @click.stop>{{ $t('selectDescriptorSearchView.stateInfoBtn') }}</v-btn>
                     </v-list-item-action> -->
-                  </v-list-item-content>
+                  <!-- </v-list-item-content> -->
                 </v-list-item>
               </v-list>
             </v-col>
           </v-row>
         </template>
-        <template v-slot:append-outer>
+        <template v-slot:append>
           <v-tooltip top>
-            <template v-slot:activator="{ on }">
-              <v-icon v-on="on" :color="colortheme.colortext" @click="onActivateSearchClick()" v-text="switchtype==='button' ? 'mdi-keyboard-off-outline' : 'mdi-keyboard-outline'"></v-icon>
+            <template v-slot:activator>
+              <v-icon :color="colortheme.colortext" @click="onActivateSearchClick()" v-text="switchtype==='button' ? 'mdi-keyboard-off-outline' : 'mdi-keyboard-outline'"></v-icon>
             </template>
             <span>{{ $t('selectDescriptorAdvancedSearchView.activateKeyboard') }}</span>
           </v-tooltip>
@@ -69,36 +69,34 @@
         </v-autocomplete>
         <v-autocomplete v-if="isMobile" :color="colortheme.colortext" hide-no-data :type="switchtype" :no-data-text="$t('selectDescriptorSearchView.noStatesText')"
         :label="$t('selectDescriptorSearchView.selecteDescriptorStateLabel')" v-model="selectedItems" loader-height="50" :menu-props="{ maxHeight:400 }"
-        :items="itemStates" :item-text="item => item.csName" item-value="stateID" flat return-object multiple :item-color="colortheme.colortext">
-        <template v-slot:item="data">
+        :items="itemStates" :item-title="item => item.csName" item-value="stateID" flat return-object multiple :item-color="colortheme.colortext">
+        <template v-slot:item="{ props, item }">
           <v-row justify="center">
             <v-col cols="12">
-              <v-list >
                 <v-divider inset></v-divider>
-                <v-list-item class="pl-0" >
-                  <v-list-item-icon class="pt-2">
-                    <v-icon :color="colortheme.colortext" v-if="data.attrs.inputValue">mdi-checkbox-marked</v-icon><v-icon v-else>mdi-checkbox-blank-outline</v-icon>
+                <v-list-item v-bind="props" class="pl-0" >
+                  <v-list-item icon class="pt-2">
+                    <v-icon :color="colortheme.colortext" v-if="item.raw.attrs.inputValue">mdi-checkbox-marked</v-icon><v-icon v-else>mdi-checkbox-blank-outline</v-icon>
                     <v-tooltip top content-class="custom-tooltip" >
-                      <template v-slot:activator="{ on }">
-                         <v-img v-if="data.item.ImageToShow" max-height="100" contain max-width="100" v-on="on" :src="data.item.ImageToShow" class="ml-2 mr-n4"/>
+                      <template v-slot:activato>
+                         <v-img v-if="item.raw.item.ImageToShow" max-height="100" contain max-width="100" :src="data.item.ImageToShow" class="ml-2 mr-n4"/>
                       </template>
-                      <span> <img class="custom-img" :src="data.item.ImageToShow"/> </span>
+                      <span> <img class="custom-img" :src="item.raw.item.ImageToShow"/> </span>
                     </v-tooltip>
-                  </v-list-item-icon>
-                  <v-list-item-content>
+                  </v-list-item>
+                  <!-- <v-list-item-content> -->
                     <v-list-item-title class="wrap-text">
                         {{ data.item.csName }}
-                      <v-list-item-icon v-if="stateImagesAvailable">
-                        <v-icon :color="colortheme.colortext" @click="onStateInfoClick(data)" @click.native.stop>mdi-information</v-icon>
-                      </v-list-item-icon>
+                      <v-list-item icon v-if="stateImagesAvailable">
+                        <v-icon :color="colortheme.colortext" @click="onStateInfoClick(item.raw)" @click.stop>mdi-information</v-icon>
+                      </v-list-item>
                     </v-list-item-title>
-                  </v-list-item-content>
+                  <!-- </v-list-item-content> -->
                 </v-list-item>
-              </v-list>
             </v-col>
           </v-row>
         </template>
-        <template v-slot:append-outer>
+        <template v-slot:append>
           <v-tooltip top>
             <template v-slot:activator="{ on }">
               <v-icon v-on="on" :color="colortheme.colortext" @click="onActivateSearchClick()" v-text="switchtype==='button' ? 'mdi-keyboard-off-outline' : 'mdi-keyboard-outline'"></v-icon>
@@ -126,14 +124,14 @@
                   </v-expansion-panels>
               </v-card-text>
               <v-card-actions>
-        <v-btn outlined rounded text :color="colortheme.colortext" @click="onCancelStateInfoClick()">{{ $t('selectDescriptorSearchView.cardTextOKBtn') }}</v-btn>
+        <v-btn variant="outlined" rounded text :color="colortheme.colortext" @click="onCancelStateInfoClick()">{{ $t('selectDescriptorSearchView.cardTextOKBtn') }}</v-btn>
               </v-card-actions>
             </v-card>
         </v-dialog>
       </v-card-text>
         <v-card-actions>
-        <v-btn outlined rounded text :color="colortheme.colortext" @click="onCancelSelectionClick()">{{ $t('selectDescriptorSearchView.cardTextCancelBtn') }}</v-btn>
-        <v-btn outlined rounded text :color="colortheme.colortext" @click="onOKSelectionClick()">{{ $t('selectDescriptorSearchView.cardTextOKBtn') }}</v-btn>
+        <v-btn variant="outlined" rounded text :color="colortheme.colortext" @click="onCancelSelectionClick()">{{ $t('selectDescriptorSearchView.cardTextCancelBtn') }}</v-btn>
+        <v-btn variant="outlined" rounded text :color="colortheme.colortext" @click="onOKSelectionClick()">{{ $t('selectDescriptorSearchView.cardTextOKBtn') }}</v-btn>
     </v-card-actions>
     </v-card>
     <v-card :color="colortheme.color" v-if="(selectedDescriptor && selectedDescriptor.type === numberDescriptorType && initSetting)">
@@ -165,8 +163,8 @@
         </v-row>
       </v-card-text>
       <v-card-actions>
-        <v-btn outlined rounded text :color="colortheme.colortext" @click="onCancelSelectionClick()">{{ $t('selectDescriptorSearchView.cardTextCancelBtn') }}</v-btn>
-        <v-btn outlined rounded text :color="colortheme.colortext" @click="onOKSelectionClick()">{{ $t('selectDescriptorSearchView.cardTextOKBtn') }}</v-btn>
+        <v-btn variant="outlined" rounded text :color="colortheme.colortext" @click="onCancelSelectionClick()">{{ $t('selectDescriptorSearchView.cardTextCancelBtn') }}</v-btn>
+        <v-btn variant="outlined" rounded text :color="colortheme.colortext" @click="onOKSelectionClick()">{{ $t('selectDescriptorSearchView.cardTextOKBtn') }}</v-btn>
     </v-card-actions>
     </v-card>
     <v-card :color="colortheme.color" v-if="(selectedDescriptor && selectedDescriptor.type === textDescriptorType && initSetting)">
@@ -199,8 +197,8 @@
       </v-row>
     </v-card-text>
     <v-card-actions>
-        <v-btn outlined rounded text :color="colortheme.colortext" @click="onCancelSelectionClick()">{{ $t('selectDescriptorSearchView.cardTextCancelBtn') }}</v-btn>
-        <v-btn outlined rounded text :disabled="!textSearchFieldIsValid" :color="colortheme.colortext" @click="onOKSelectionClick()">{{ $t('selectDescriptorSearchView.cardTextOKBtn') }}</v-btn>
+        <v-btn variant="outlined" rounded text :color="colortheme.colortext" @click="onCancelSelectionClick()">{{ $t('selectDescriptorSearchView.cardTextCancelBtn') }}</v-btn>
+        <v-btn variant="outlined" rounded text :disabled="!textSearchFieldIsValid" :color="colortheme.colortext" @click="onOKSelectionClick()">{{ $t('selectDescriptorSearchView.cardTextOKBtn') }}</v-btn>
     </v-card-actions>
    </v-card>
 </v-card>
@@ -243,7 +241,7 @@ export default {
       return this.$store.getters.getSwitchType
     },
     isMobile () {
-      if (this.$vuetify.breakpoint.mobile) {
+      if (this.$vuetify.display.xsOnly) {
         return true
       }
       return false

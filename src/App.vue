@@ -32,11 +32,12 @@ export default {
     this.$store.dispatch('passLoadedAllDatasources', true)
   },
   beforeMount () {
-    window.addEventListener('beforeunload', this.preventNav)
-    // console.log('addeventlistenenr')
-    this.$once('hook:beforeDestroy', () => {
-      window.removeEventListener('beforeunload', this.preventNav)
-    })
+    // TODO vue3 for migrating uncommented do we need this for page reload?
+    // window.addEventListener('beforeunload', this.preventNav)
+    // // console.log('addeventlistenenr')
+    // this.$once('vnode-beforeUnmount', () => {
+    //   window.removeEventListener('beforeunload', this.preventNav)
+    // })
   },
   mounted () {
     const localStorageName = process.env.VUE_APP_INDEXED_DB_NAME
@@ -147,11 +148,11 @@ export default {
     // 'home': Home
   },
   methods: {
-    preventNav (event) {
-      // if (!this.isEditing) return
-      event.preventDefault()
-      event.returnValue = ''
-    }
+    // preventNav (event) {
+    //   // if (!this.isEditing) return
+    //   event.preventDefault()
+    //   event.returnValue = ''
+    // }
   }
 }
 </script>

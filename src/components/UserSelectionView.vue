@@ -27,13 +27,13 @@
         </v-row>
       </v-card-text>
       <v-card-actions>
-        <v-btn outlined rounded text :color="colortheme.colortext" @click="onOKGroupDialogClick()">{{ $t('selectDescriptorSearchView.cardTextOKBtn') }}</v-btn>
+        <v-btn variant="outlined" rounded :color="colortheme.colortext" @click="onOKGroupDialogClick()">{{ $t('selectDescriptorSearchView.cardTextOKBtn') }}</v-btn>
       </v-card-actions>
       </v-card>
     </v-dialog>
     <v-card-title class="subtitle-2 pb-2 pr-0 pl-1" :color="colortheme.colortext">{{ $t('userSelectionView.cardTitleSelectedGroup') }}
       <v-divider inset class="mx-4"></v-divider>
-        <v-btn text small class="px-0" :color="colortheme.colortext" @click="onGroupClick()"><v-icon>mdi-group</v-icon>{{ $t('userSelectionView.Group') }}</v-btn>
+        <v-btn variant="text" small class="px-0" :color="colortheme.colortext" @click="onGroupClick()"><v-icon>mdi-group</v-icon>{{ $t('userSelectionView.Group') }}</v-btn>
     </v-card-title>
     <v-card-text dense class="pb-0 px-0 pt-0">
       <list-selected-descriptor-pairs @listItemDeleteClickEvent="onListItemDeleteClick($event)" @listItemEditClickEvent="onListItemEditClick($event)">

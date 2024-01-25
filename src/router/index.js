@@ -1,10 +1,7 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import NavikeyHome from '../views/NavikeyHome.vue'
 import NaviKeyResultsList from '../components/NaviKeyResultsList'
 import NaviKeyResultDetails from '../components/NaviKeyResultDetails'
-
-Vue.use(VueRouter)
 
 const routes = [
   {
@@ -28,7 +25,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/AboutDivNaviKey.vue')
   },
   {
     path: '/navikey-settings',
@@ -38,7 +35,7 @@ const routes = [
   {
     path: '/impressum',
     name: 'impressum',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Impressum.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/ImpressumDivNaviKey.vue')
   },
   {
     path: '/tutorial/gettingstarted',
@@ -72,9 +69,9 @@ const routes = [
   }
 ]
 
-const router = new VueRouter({
+const router = createRouter({
+  history: createWebHistory(),
   routes
-  // mode: 'history'
 })
 
 export default router

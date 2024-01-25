@@ -3,8 +3,8 @@
         <v-card-title>{{ $t('exportDialogForm.saveDialogExportTitle') }}</v-card-title>
         <v-card-text>
           <v-text-field :label="$t('exportDialogForm.fileName')" clearable type="text" v-model="exportFileName"></v-text-field>
-          <v-btn text :color="colortheme.colortext" @click="onOKExportButtonClick()">{{ $t('exportDialogForm.okExportButton' )}}</v-btn>
-          <v-btn text :color="colortheme.colortext" @click="onCancelExportButtonClick()">{{ $t('exportDialogForm.cancelExportButton') }}</v-btn>
+          <v-btn variant="text" :color="colortheme.colortext" @click="onOKExportButtonClick()">{{ $t('exportDialogForm.okExportButton' )}}</v-btn>
+          <v-btn variant="text" :color="colortheme.colortext" @click="onCancelExportButtonClick()">{{ $t('exportDialogForm.cancelExportButton') }}</v-btn>
         </v-card-text>
       </v-card>
 </template>

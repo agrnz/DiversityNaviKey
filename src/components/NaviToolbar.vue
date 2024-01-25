@@ -1,42 +1,42 @@
 <template>
   <div>
-  <v-navigation-drawer app v-model="drawer" :color="colortheme.color" id="navikey-navigation-drawer" name="navikey-navigation-drawer-button">
+  <v-navigation-drawer v-model="drawer" :color="colortheme.color" id="navikey-navigation-drawer" name="navikey-navigation-drawer-button">
        <v-list nav dense :color="colortheme.color">
         <v-list-item to="/">
           <v-list-item-action>
            <v-icon>mdi-home</v-icon>
           </v-list-item-action>
-          <v-list-item-content>
+          <!-- <v-list-item-content> -->
             {{ $t('naviToolbar.home') }}
-          </v-list-item-content>
+          <!-- </v-list-item-content> -->
         </v-list-item>
         <v-list-item  to="/navikey-settings">
           <v-list-item-action>
            <v-icon>mdi-tools</v-icon>
           </v-list-item-action>
-          <v-list-item-content>
+          <!-- <v-list-item-content> -->
             {{ $t('naviToolbar.settings') }}
-        </v-list-item-content>
+        <!-- </v-list-item-content> -->
         </v-list-item>
         <v-list-item  to="/about">
           <v-list-item-action>
            <v-icon>mdi-information-variant</v-icon>
           </v-list-item-action>
-          <v-list-item-content>
+          <!-- <v-list-item-content> -->
             {{ $t('naviToolbar.about') }}
-          </v-list-item-content>
+          <!-- </v-list-item-content> -->
         </v-list-item>
         <v-list-item  to="/impressum">
           <v-list-item-action>
            <v-icon>mdi-format-quote-close</v-icon>
           </v-list-item-action>
-          <v-list-item-content>
+          <!-- <v-list-item-content> -->
             {{ $t('naviToolbar.impressum') }}
-          </v-list-item-content>
+          <!-- </v-list-item-content> -->
         </v-list-item>
         <v-list-group prepend-icon="mdi-help-circle-outline">
           <template v-slot:activator>
-            <v-list-item-content>{{ $t('naviToolbar.tutorial') }}</v-list-item-content>
+            {{ $t('naviToolbar.tutorial') }}
           </template>
           <v-list-item link to="/tutorial/gettingstarted">
           <v-list-item-title>
@@ -71,7 +71,7 @@
         </v-list-group>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar app elevation="0" :color="colortheme.color" id="navikey-application-bar" name="application-bar">
+    <v-app-bar elevation="0" :color="colortheme.color" id="navikey-application-bar" name="application-bar">
       <v-app-bar-nav-icon focusable :color="colortheme.colortext" aria-label="Navigation bar button" @click.stop="drawer = !drawer" id="navikey-application-bar-icon" name="nav-bar-icon-button"/>
       <v-img class="mx-2" v-if="!isMobile" max-height="40" max-width="40" contain src="@/assets/DWB_logo.png"></v-img>
       <v-toolbar-title @click="onDatasourceClick()">{{ datasource }}
@@ -91,12 +91,12 @@
         </v-tabs>
       </template>
     </v-app-bar>
-    <v-app-bar app bottom flat v-if="isMobile">
-    <v-btn block x-large v-if="isQueryPage" to="/navikey-resultlist" :color="colortheme.colortext" tile outlined>
+    <v-app-bar bottom flat v-if="isMobile">
+    <v-btn block x-large v-if="isQueryPage" to="/navikey-resultlist" :color="colortheme.colortext" tile variant="outlined">
       <span>{{ $t('naviToolbar.matches') }} {{numberOfMatches}}</span>
       <v-icon>mdi-puzzle-outline</v-icon>
     </v-btn>
-    <v-btn block x-large v-if="!isQueryPage" to="/" :color="colortheme.colortext" tile outlined>
+    <v-btn block x-large v-if="!isQueryPage" to="/" :color="colortheme.colortext" tile variant="outlined">
       <span>{{ $t('naviToolbar.selectorTitle') }}</span>
       <v-icon>mdi-database-search</v-icon>
     </v-btn>
@@ -116,8 +116,8 @@
 import { mapGetters } from 'vuex'
 import SearchSwitcher from './SearchSwitcher.vue'
 import DataSourceInformationDialog from './DataSourceInformationDialog'
-import LoginDialogForm from '../views/Login.vue'
-import LogoutDialogForm from '../views/Logout.vue'
+import LoginDialogForm from '../views/LoginDivNaviKey.vue'
+import LogoutDialogForm from '../views/LogoutDivNaviKey.vue'
 
 export default {
   name: 'NaviToolbar',
@@ -145,7 +145,7 @@ export default {
       return false
     },
     isMobile () {
-      if (this.$vuetify.breakpoint.mobile) {
+      if (this.$vuetify.display.mobile) {
         return true
       }
       return false

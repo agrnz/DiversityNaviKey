@@ -12,7 +12,7 @@
     <v-list-item-subtitle class="wrap-text">{{item.name}}</v-list-item-subtitle>
     </v-list-item>
   </template>
-    <template v-slot:append="{ item, leaf }">
+    <template v-slot:append-inner="{ item, leaf }">
       <v-btn v-if="leaf" dense icon @click="onListItemEditClick(item)">
       <v-icon :color="colortheme.colortext">mdi-pencil-outline</v-icon>
       </v-btn>

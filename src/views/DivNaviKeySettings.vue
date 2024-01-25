@@ -70,7 +70,7 @@
       <v-card-title class="subtitle-2">{{ $t('selectDescriptorAdvancedSearchView.errorTitle') }}</v-card-title>
       <v-card-subtitle>
         {{errorMessage}}
-        <v-btn outlined small class="ml-4" @click="onErrorButtonOkClicked()">{{ $t('selectDescriptorAdvancedSearchView.errorButtonOK') }}</v-btn>
+        <v-btn variant="outlined" small class="ml-4" @click="onErrorButtonOkClicked()">{{ $t('selectDescriptorAdvancedSearchView.errorButtonOK') }}</v-btn>
       </v-card-subtitle>
       </v-card>
      <v-card-text>
@@ -96,8 +96,8 @@
         <v-card-title>{{ $t('settings.updateApp') }}</v-card-title>
         <v-card-text>
           {{ $t('settings.updateInfoText') }}
-          <v-btn text @click="onOKUpdateButtonClick()">{{ $t('settings.okExportButton' )}}</v-btn>
-          <v-btn text @click="onCancelUpdateButtonClick()">{{ $t('settings.cancelExportButton') }}</v-btn>
+          <v-btn variant="text" @click="onOKUpdateButtonClick()">{{ $t('settings.okExportButton' )}}</v-btn>
+          <v-btn variant="text" @click="onCancelUpdateButtonClick()">{{ $t('settings.cancelExportButton') }}</v-btn>
         </v-card-text>
       </v-card>
       </v-dialog>
@@ -106,8 +106,8 @@
         <v-card-title>{{ $t('settings.resetDialogTitle') }}</v-card-title>
         <v-card-text>
           {{resetInfo}}
-          <v-btn v-if="!resetConfirm" text @click="onOKResetButtonClick()">{{ $t('settings.okExportButton' )}}</v-btn>
-          <v-btn v-if="!resetConfirm" text @click="onCancelResetButtonClick()">{{ $t('settings.cancelExportButton') }}</v-btn>
+          <v-btn v-if="!resetConfirm" variant="text" @click="onOKResetButtonClick()">{{ $t('settings.okExportButton' )}}</v-btn>
+          <v-btn v-if="!resetConfirm" variant="text" @click="onCancelResetButtonClick()">{{ $t('settings.cancelExportButton') }}</v-btn>
         </v-card-text>
       </v-card>
       </v-dialog>

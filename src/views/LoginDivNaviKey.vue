@@ -23,7 +23,7 @@
       </v-card-actions>
       <v-card-subtitle class="pb-0 pl-0 ml-0">
       {{$t('general.infoTextForRegistration')}}
-      <v-btn :color="colortheme.colortext" class="pb-0 pl-0 ml-0" text @click="onRegisterBtnClicked">
+      <v-btn :color="colortheme.colortext" class="pb-0 pl-0 ml-0" variant="text" @click="onRegisterBtnClicked">
           {{$t('general.hereBtn')}}
         </v-btn>
       </v-card-subtitle>
@@ -38,7 +38,7 @@ import User from '../models/user'
 import RegisterUserDialogForm from '../views/RegisterUser.vue'
 
 export default {
-  name: 'Login',
+  name: 'LoginDivNaviKey',
   data: () => ({
     user: new User('', '', ''),
     valid: true,

@@ -1,20 +1,14 @@
 import '@mdi/font/css/materialdesignicons.css'
 import 'typeface-roboto/index.css'
-import Vue from 'vue'
-import Vuetify from 'vuetify/lib'
+import { createVuetify } from 'vuetify'
+import * as components from 'vuetify/lib/components'
+import * as directives from 'vuetify/lib/directives'
 
-Vue.use(Vuetify)
-
-export default new Vuetify({
-  breakpoint: {
-    mobileBreakpoint: 'sm' // This is equivalent to a value of 960
+const vuetify = createVuetify({
+  components,
+  directives,
+  display: {
+    mobileBreakpoint: 'sm'
   }
-  // lang: {
-  //   locales: { cs },
-  //   current: 'cs'
-  // }
-  // lang: {
-  //   t: (key, ...params) => i18n.t(key, params)
-  // }
-  // rtl: true // for changing direction this.$vuetify.rtl = true
 })
+export default vuetify

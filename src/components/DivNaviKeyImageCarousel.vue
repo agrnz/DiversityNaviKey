@@ -17,7 +17,7 @@
     </v-window>
     <v-card-actions class="justify-space-between">
       <v-btn
-        text
+        variant="text"
         @click="prev"
       >
         <v-icon v-if="carouselImages && carouselImages.length > 1">mdi-chevron-left</v-icon>
@@ -72,7 +72,7 @@ export default {
       }
     },
     isMobile () {
-      return this.$vuetify.breakpoint.xsOnly
+      return this.$vuetify.display.xsOnly
     }
   },
   methods: {

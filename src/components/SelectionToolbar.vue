@@ -1,13 +1,13 @@
 <template>
   <div-navikey-toolbar>
     <template v-slot:content>
-      <v-btn v-if="checkIsCurrentModeExpert" class="pl-2"  :color="colortheme.darktext" text @click="onLoadCriteriaClick()">
+      <v-btn v-if="checkIsCurrentModeExpert" class="pl-2"  :color="colortheme.darktext" variant="text" @click="onLoadCriteriaClick()">
         <v-icon left>mdi-folder-upload</v-icon>{{ $t('selectionToolbar.loadCriteriaText') }}
       </v-btn>
-      <v-btn v-if="checkIsCurrentModeExpert" class="ml-2" :color="colortheme.darktext" text @click="onExportCriteriaClick()">
+      <v-btn v-if="checkIsCurrentModeExpert" class="ml-2" :color="colortheme.darktext" variant="text" @click="onExportCriteriaClick()">
         <v-icon left>mdi-folder-download</v-icon>{{ $t('selectionToolbar.exportCriteriaText') }}
       </v-btn>
-      <v-btn v-if="checkIsCurrentModeExpert"  class="ml-2" :color="colortheme.darktext" text @click="onNewCriteriaClick()">
+      <v-btn v-if="checkIsCurrentModeExpert"  class="ml-2" :color="colortheme.darktext" variant="text" @click="onNewCriteriaClick()">
         <v-icon left>mdi-file-outline</v-icon>{{ $t('selectionToolbar.newCriteriaText') }}
       </v-btn>
     </template>

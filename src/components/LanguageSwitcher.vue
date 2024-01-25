@@ -1,6 +1,6 @@
 <template>
   <v-select v-model="comLanguageSelect" @hover="$t('languageSwitcher.selectLanguage')"
-  @change="onChangeLang" :items="langs" item-text="key" item-value="key" :aria-labelledby="$t('languageSwitcher.selectLanguage')"
+  @change="onChangeLang" :items="langs" item-title="key" item-value="key" :aria-labelledby="$t('languageSwitcher.selectLanguage')"
   style="max-width: min-content" :color="colortheme.colortext" hide-details
   :item-color="colortheme.colortext">
   </v-select>

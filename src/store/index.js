@@ -1,9 +1,7 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import { createStore } from 'vuex'
 import AuthService from '../service/authService'
 import DataService from '../service/dataService'
 
-Vue.use(Vuex)
 const getDefaultState = () => {
   return {
     descJson: [],
@@ -2052,7 +2050,7 @@ const rootModule = {
  * TODO Exception handling!!!!!!!!!!!!!!!!!!!!!!!
  *
  */
-export default new Vuex.Store({
+export const store = createStore({
   modules: {
     singleDataStore: moduleSingleDatastore,
     rootStore: rootModule

@@ -3,8 +3,8 @@
     <v-card-title>
       {{ $t('selectDescriptorAdvancedSearchView.loadingTitle') }} - ({{ $t(loadingmode) }})
       <v-tooltip top>
-        <template v-slot:activator="{ on }">
-          <v-icon v-on="on" :color="colortheme.colortext">mdi-information-outline</v-icon>
+        <template v-slot:activator>
+          <v-icon :color="colortheme.colortext">mdi-information-outline</v-icon>
         </template>
         <span>({{ $t(loadingmode) }}) - {{ $t('selectDescriptorAdvancedSearchView.loadingTextInfo') }}</span>
       </v-tooltip>

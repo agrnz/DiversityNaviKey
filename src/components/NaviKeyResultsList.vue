@@ -16,21 +16,21 @@
     </v-card-actions>
     <v-card-text class="mt-0 pt-0">
       <v-list :color="colortheme.color" class="mt-0 pt-0">
-        <template v-for="(item, index) in resultItems">
-          <v-list-item :key="item.IID + item.ItemName">
-                <v-list-item-content>
+        <template v-for="(item) in resultItems" :key="item.IID + item.ItemName">
+          <v-list-item>
+                <!-- <v-list-item-content> -->
                   <v-list-item-title v-if="useTaxonScope && showAuthor && item.scopeTaxonInfo && item.scopeTaxonInfo.length > 0 && item.scopeTaxonInfo[0].acceptedName"  class="wrap-text" @click="showItemDetails(item.IID)">{{item.scopeTaxonInfo[0].acceptedName}}</v-list-item-title>
                   <v-list-item-title v-else-if="(!useTaxonScope || ( !item.scopeTaxonInfo || item.scopeTaxonInfo.length === 0 || !item.scopeTaxonInfo[0].acceptedName) && showAuthor)" class="wrap-text" @click="showItemDetails(item.IID)">{{item.ItemName}}</v-list-item-title>
                   <v-list-item-title v-else-if="useTaxonScope && !showAuthor && item.scopeTaxonInfo && item.scopeTaxonInfo.length > 0 && item.scopeTaxonInfo[0].acceptedNameSinAuthor" class="wrap-text" @click="showItemDetails(item.IID)">{{item.scopeTaxonInfo[0].acceptedNameSinAuthor}}</v-list-item-title>
                   <v-list-item-title v-else-if="(!useTaxonScope || ( !item.scopeTaxonInfo || item.scopeTaxonInfo.length === 0 || !item.scopeTaxonInfo[0].acceptedNameSinAuthor) && !showAuthor)" class="wrap-text" @click="showItemDetails(item.IID)">{{item.ItemName}}</v-list-item-title>
                   <v-list-item-subtitle v-if="useTaxonScope && showAuthor && item.scopeTaxonInfo && (item.scopeTaxonInfo.length === 0 || (item.scopeTaxonInfo.length > 0 && item.scopeTaxonInfo[0].acceptedName && item.scopeTaxonInfo[0].acceptedName !== item.ItemName))" class="wrap-text" @click="showItemDetails(item.IID)">{{item.ItemName}}</v-list-item-subtitle>
                   <v-list-item-subtitle v-else-if="useTaxonScope && !showAuthor && item.scopeTaxonInfo && item.scopeTaxonInfo.length > 0 && item.scopeTaxonInfo[0].acceptedNameSinAuthor !== item.scopeTaxonInfo[0].taxonNameSinAuthor" class="wrap-text" @click="showItemDetails(item.IID)">{{item.scopeTaxonInfo[0].taxonNameSinAuthor}}</v-list-item-subtitle>
-                </v-list-item-content>
+                <!-- </v-list-item-content> -->
                 <v-list-item-action>
                 <v-icon @click="showItemDetails(item.IID)">mdi-open-in-new</v-icon>
               </v-list-item-action>
           </v-list-item>
-          <v-divider :key="index"></v-divider>
+          <v-divider></v-divider> <!-- :key="index" -->
           </template>
       </v-list>
     </v-card-text>
@@ -38,7 +38,7 @@
       <export-dialog-form v-on:onOKExportButtonClick="onOKExportButtonClick($event)" v-on:onCancelExportButtonClick="onCancelExportButtonClick()" />
     </v-dialog>
     <v-dialog transition="fab-transition" :fullscreen="isMobile" scrollable v-model="detailsDialog" @click:outside="onCloseDetailsClick()">
-      <v-btn :color="colortheme.colordarken" v-if="!isMobile" fab dark small fixed top right @click="onCloseDetailsClick()">
+      <v-btn :color="colortheme.colordarken" v-if="!isMobile" icon dark small fixed top right @click="onCloseDetailsClick()">
         <v-icon>mdi-close</v-icon>
       </v-btn>
       <navikey-result-details v-on:onCloseDetailsClick="onCloseDetailsClick()"/>
@@ -75,7 +75,7 @@ export default {
       return this.getGuiColorTheme
     },
     isMobile () {
-      if (this.$vuetify.breakpoint.mobile) {
+      if (this.$vuetify.display.xsOnly) {
         return true
       }
       return false

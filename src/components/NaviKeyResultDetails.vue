@@ -1,14 +1,14 @@
 <template>
   <v-card :color="colortheme.color" flat tile min-height="400" v-touch="{ right: () => swipe('Right'), left: () => swipe('Left') }">
     <v-toolbar :color="colortheme.color" flat dense>
-      <v-btn :color="colortheme.colortext" class="ml-0 pl-0" v-if="isMobile" text @click="onCloseDetailsClick()">
+      <v-btn :color="colortheme.colortext" class="ml-0 pl-0" v-if="isMobile" variant="text" @click="onCloseDetailsClick()">
         <v-icon>mdi-arrow-left</v-icon>
       </v-btn>
       <v-spacer></v-spacer>
-      <v-btn v-if="!isMobile" :color="colortheme.colortext" class="ml-2" text @click="onExportCriteriaClick()">
+      <v-btn v-if="!isMobile" :color="colortheme.colortext" class="ml-2" variant="text" @click="onExportCriteriaClick()">
         <v-icon left>mdi-folder-download</v-icon>{{ $t('navikeyResultDetails.exportCriteriaText') }}
         </v-btn>
-        <v-btn v-if="isMobile" :color="colortheme.colortext" class="ml-2" text @click="onExportCriteriaClick()">
+        <v-btn v-if="isMobile" :color="colortheme.colortext" class="ml-2" variant="text" @click="onExportCriteriaClick()">
         <v-icon left>mdi-folder-download</v-icon>
         </v-btn>
     </v-toolbar>
@@ -19,11 +19,11 @@
     <!-- <v-card class="overflow-auto"> -->
     <v-card-text v-if="detailsError !== ''" class="wrap-text">{{detailsError}}</v-card-text>
     <v-card-actions v-if="!isMobile">
-      <v-btn :color="colortheme.colordarken" fab dark small fixed left @click="swipe('Right')">
+      <v-btn :color="colortheme.colordarken" icon dark small fixed left @click="swipe('Right')">
         <v-icon>mdi-arrow-left</v-icon>
       </v-btn>
       <v-spacer></v-spacer>
-      <v-btn :color="colortheme.colordarken" fab dark small fixed right @click="swipe('Left')">
+      <v-btn :color="colortheme.colordarken" icon dark small fixed right @click="swipe('Left')">
         <v-icon>mdi-arrow-right</v-icon>
       </v-btn>
     </v-card-actions>
@@ -49,19 +49,19 @@
                     <td>{{groupItem.descriptorName}}</td>
                     <td>
                       <template v-if="(groupItem.descriptorType === selectionDescriptorType)">
-                          <template v-for="(descriptorItem, k) in groupItem.items">
-                          <tr :key="k">{{descriptorItem.stateName}} <span v-if="descriptorItem.modifier"> ({{descriptorItem.modifier}}) </span></tr>
+                          <template v-for="(descriptorItem, k) in groupItem.items" :key="k">
+                          <tr>{{descriptorItem.stateName}} <span v-if="descriptorItem.modifier"> ({{descriptorItem.modifier}}) </span></tr>
                         </template>
                         </template>
                     <template v-if="(groupItem.descriptorType === numberDescriptorType)">
-                      <template v-for="(descriptorItem, k) in groupItem.items">
-                        <tr :key="k"><span v-if="descriptorItem.unitIsPrefix && descriptorItem.unit">{{descriptorItem.unit}} </span> {{descriptorItem.stateName}}: {{descriptorItem.numberValue}} <span v-if="!descriptorItem.unitIsPrefix && descriptorItem.unit">{{descriptorItem.unit}} </span>
+                      <template v-for="(descriptorItem, k) in groupItem.items" :key="k">
+                        <tr><span v-if="descriptorItem.unitIsPrefix && descriptorItem.unit">{{descriptorItem.unit}} </span> {{descriptorItem.stateName}}: {{descriptorItem.numberValue}} <span v-if="!descriptorItem.unitIsPrefix && descriptorItem.unit">{{descriptorItem.unit}} </span>
                         </tr>
                       </template>
                     </template>
                     <template v-if="(groupItem.descriptorType === textDescriptorType)">
-                      <template v-for="(descriptorItem, k) in groupItem.items">
-                        <tr :key="k" v-html="descriptorItem.txtValue"></tr>
+                      <template v-for="(descriptorItem, k) in groupItem.items" :key="k">
+                        <tr v-html="descriptorItem.txtValue"></tr>
                       </template>
                     </template>
                     </td>
@@ -70,7 +70,7 @@
               </v-simple-table>
               <v-list v-if="isMobile" class="pl-2 pr-2">
               <v-list-item v-for="(groupItem, i) in group.descriptorStates" :key="i">
-                <v-list-item-content>
+                <!-- <v-list-item-content> -->
                   <v-list-item-title class="wrap-text">{{groupItem.descriptorName}}</v-list-item-title>
                   <template v-if="(groupItem.descriptorType === selectionDescriptorType)">
                     <v-list-item-subtitle class="wrap-text" v-for="(descriptorItem, k) in groupItem.items" :key="k">{{descriptorItem.stateName}} <span v-if="descriptorItem.modifier"> ({{descriptorItem.modifier}}) </span></v-list-item-subtitle>
@@ -81,7 +81,7 @@
                    <template v-if="(groupItem.descriptorType === textDescriptorType)">
                      <v-list-item-subtitle class="wrap-text" v-for="(descriptorItem, k) in groupItem.items" :key="k" v-html="descriptorItem.txtValue"></v-list-item-subtitle>
                    </template>
-                </v-list-item-content>
+                <!-- </v-list-item-content> -->
               </v-list-item>
               </v-list>
               </v-expansion-panel-content>
@@ -116,22 +116,22 @@
                 </v-simple-table>
                 <v-list v-if="isMobile && taxonInfo">
                 <v-list-item>
-                <v-list-item-content>
+                <!-- <v-list-item-content> -->
                   <v-list-item-title class="wrap-text">{{ $t('navikeyResultDetails.scopeTaxonAcceptedName') }}</v-list-item-title>
                     <v-list-item-subtitle class="wrap-text">
                       {{ taxonInfo.acceptedName }}
                       </v-list-item-subtitle>
-                </v-list-item-content>
+                <!-- </v-list-item-content> -->
                 </v-list-item>
                 </v-list>
                 <v-list v-if="isMobile && citationInfo">
                 <v-list-item v-for="(citInfo, i) in citationInfo" :key="i">
-                 <v-list-item-content>
+                 <!-- <v-list-item-content> -->
                   <v-list-item-title v-if="i===0" class="wrap-text"> {{ $t('navikeyResultDetails.scopeCitTitle') }}</v-list-item-title>
                     <v-list-item-subtitle class="wrap-text">
                        {{ citInfo.citationDescription }} <br>{{ citInfo.citationInfo }}
                       </v-list-item-subtitle>
-                </v-list-item-content>
+                <!-- </v-list-item-content> -->
                 </v-list-item>
                 </v-list>
               </v-expansion-panel-content>
@@ -175,7 +175,7 @@ export default {
       return this.getGuiColorTheme
     },
     isMobile () {
-      if (this.$vuetify.breakpoint.mobile) {
+      if (this.$vuetify.display.xsOnly) {
         return true
       }
       return false

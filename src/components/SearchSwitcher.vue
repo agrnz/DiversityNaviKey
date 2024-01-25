@@ -5,17 +5,17 @@
       menu-props="auto"
       hide-details
       single-line
-      item-text="name" item-value="id"
+      item-title="name" item-value="id"
       :style="getStyle" :color="colortheme.colortext" :item-color="colortheme.colortext"
     >
     <template v-slot:item= "{ item }">
-      <v-icon>{{item.icon}}</v-icon>
-        <v-list-item-title>{{ item.name }}</v-list-item-title>
+      <v-icon>{{item.raw.icon}}</v-icon>
+        <v-list-item-title>{{ item.raw.name }}</v-list-item-title>
     </template>
     <template v-slot:selection= "{ item }">
       <v-icon v-if="!isMobile">{{ item.icon }}</v-icon>
-        <v-list-item-title v-if="!isMobile">{{ item.name }}</v-list-item-title>
-        <v-list-item-title v-if="isMobile"> <v-icon>{{ item.icon }}</v-icon></v-list-item-title>
+        <v-list-item-title v-if="!isMobile">{{ item.raw.name }}</v-list-item-title>
+        <v-list-item-title v-if="isMobile"> <v-icon>{{ item.raw.icon }}</v-icon></v-list-item-title>
     </template>
   </v-select>
 </template>
@@ -36,7 +36,7 @@ export default {
       }
     },
     isMobile () {
-      return this.$vuetify.breakpoint.xsOnly
+      return this.$vuetify.display.xsOnly
     },
     colortheme () {
       return this.$store.getters.getGuiColorTheme
